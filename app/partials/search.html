@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="header">
+        <h3 class="text-muted">Elasticsearch.js + Angular.js</h3>
+    </div>
+
+    <div class="jumbotron">
+        <p class="lead">Start typing to search for countries</p>
+
+        <div class="filter">
+            <span class="search-query">search field:</span>
+            <input id="filter-all" name="filterRadios" type="radio" checked="true"><span class="filter-name">All</span></input>
+            <input id="filter-name" name="filterRadios" type="radio"><span class="filter-name">Name</span></input>
+            <input id="filter-captal" name="filterRadios" type="radio"><span class="filter-name">Capital</span></input>
+        </div>
+
+        <input type="text" ng-change="search()" ng-model="global.search" class="form-control" placeholder="Search">
+        <ul class="list">
+            <li ng-repeat="country in countries">
+                <a class="country-{{$index}}" ng-href="#/country/{{country._id}}">
+                    <span class="glyphicon glyphicon-"></span>
+                    <h4>{{country._source.name}}</h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>
