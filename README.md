@@ -2,6 +2,8 @@
 
 The example demonstrates how elasticSearch is used to search for countries.
 
+![](https://dl.dropboxusercontent.com/u/209679/Screenshot%202014-04-22%2014.29.41.png)
+
 ### Run project:
 
 1. git clone
