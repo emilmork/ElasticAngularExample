@@ -1,47 +1,27 @@
 angular.module('ESApp.controllers',[])
-.controller('searchController', function($scope, countryService, elasticClient) {
+.controller('searchController', function($scope, countryService, elSearch) {
         // Index countries
 
     $scope.search = function() {
 
         var searchQuery = $scope.global.search;
 
-        elasticClient.search({
-            q : searchQuery
-        }).then(function(res) {
-              $scope.countries = res.hits.hits;
+        //Search for countries with searchQuery
+        elSearch.search(searchQuery).then(function(res) {
+            $scope.countries = res.hits.hits;
         });
-
     };
 
 })
-.controller('countryController', function($scope, $routeParams, elasticClient) {
+.controller('countryController', function($scope, $routeParams, elSearch) {
+
     var countryId = $routeParams.id;
     // Get selected country from elasticsearch with id
-
-        elasticClient.get({
-            index: 'countries',
-            type: 'country',
-            id: countryId
-        }, function (error, response) {
-            console.log(response);
-
-            var country = response._source;
-
-            $scope.country = country;
-            $scope.spellings = country.altSpellings;
-            $scope.borders = country.borders;
-            $scope.currency = country.currency;
-        });
-
-//    $http.get('http://localhost:9200/countries/country/' + countryId)
-//        .success(function(country) {
-//            $scope.country = country._source;
-//            $scope.spellings = country.altSpellings;
-//            $scope.borders = country.borders;
-//            $scope.currency = country.currency;
-//        });
-
+    elSearch.get(countryId,{
+        id: countryId
+    }).then(function(response) {
+        $scope.country = response._source;;
+    });
 })
 .controller('indexController', function($scope, countryService) {
     //Index all countries
