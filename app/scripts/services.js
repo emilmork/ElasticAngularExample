@@ -8,13 +8,14 @@ angular.module('ESApp.services', [])
 
         var elSearch = {};
 
+        //Searching with elasticClient. Returning search promis
         elSearch.search = function(searchQuery) {
-            //Searching with elasticClient. Returning search promis
             return elasticClient.search({
                 q : searchQuery
             });
         };
 
+        //Get object from id. Returning promis
         elSearch.get = function(id) {
             return elasticClient.get({
                 index: 'countries',

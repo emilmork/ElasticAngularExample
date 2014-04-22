@@ -16,6 +16,7 @@ angular.module('ESApp.controllers',[])
 .controller('countryController', function($scope, $routeParams, elSearch) {
 
     var countryId = $routeParams.id;
+
     // Get selected country from elasticsearch with id
     elSearch.get(countryId,{
         id: countryId
@@ -24,6 +25,7 @@ angular.module('ESApp.controllers',[])
     });
 })
 .controller('indexController', function($scope, countryService) {
+        
     //Index all countries
     countryService.indexCountries();
 });
